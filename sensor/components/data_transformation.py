@@ -2,7 +2,7 @@ import sys
 
 import numpy as np
 import pandas as pd
-from imblearn.combine import SMOTETomek
+from imblearn.combine import SMOTEENN
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import RobustScaler
 from sklearn.pipeline import Pipeline
@@ -86,7 +86,7 @@ class DataTransformation:
             transformed_input_train_feature = preprocessor_object.transform(input_feature_train_df)
             transformed_input_test_feature =preprocessor_object.transform(input_feature_test_df)
 
-            smt = SMOTETomek(sampling_strategy="minority")
+            smt = SMOTEENN(sampling_strategy='auto')
 
             input_feature_train_final, target_feature_train_final = smt.fit_resample(
                 transformed_input_train_feature, target_feature_train_df
